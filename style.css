@@ -1,0 +1,6 @@
+body{font-family:Arial,sans-serif;background:#111;color:#fff;margin:0}
+.hero{text-align:center;padding:40px;background:#000}
+h1,h2,h3{color:#d4af37}
+a{display:inline-block;margin:8px;padding:10px 16px;text-decoration:none;border-radius:8px;background:#25D366;color:#fff}
+main{padding:20px}
+footer{text-align:center;padding:20px;border-top:1px solid #444}
