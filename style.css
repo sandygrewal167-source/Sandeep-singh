@@ -1,1 +1,12 @@
-body{font-family:Arial;background:#111;color:#fff;margin:0}header{text-align:center;padding:24px;background:#000;color:#d4af37}.btn{display:inline-block;margin-top:10px;background:#25D366;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none}.card{margin:16px;padding:16px;background:#1b1b1b;border:1px solid #d4af37;border-radius:10px}h2{color:#d4af37}li{margin:6px 0}footer{text-align:center;padding:20px;border-top:1px solid #d4af37}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial;background:#111;color:#fff}
+.hero{padding:70px 20px;text-align:center;background:#000}
+.badge{display:inline-block;background:#2e7d32;padding:8px 16px;border-radius:20px;font-weight:bold}
+h1,h2,h3{color:#d4af37}
+.buttons a{display:inline-block;margin:10px;padding:12px 18px;text-decoration:none;border-radius:8px;font-weight:bold}
+.wa{background:#25D366;color:#fff}.call{background:#d4af37;color:#111}
+.section{padding:20px}
+.menu-card{background:#1b1b1b;border:1px solid #d4af37;border-radius:10px;padding:15px;margin:16px 0}
+.menu-card p{margin:6px 0}
+.offers{background:#222;border:1px solid #d4af37;padding:15px;border-radius:10px;margin-top:20px}
+footer{text-align:center;padding:25px;border-top:1px solid #d4af37}
+.float{position:fixed;right:20px;bottom:20px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:28px}
