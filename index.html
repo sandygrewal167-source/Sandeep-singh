@@ -137,3 +137,69 @@ function removeItem(name){
   updateCart();
 
 }
+// ===============================
+// Checkout & Payment
+// ===============================
+
+function showPayment(){
+
+    if(cart.length==0){
+        alert("Your cart is empty.");
+        return;
+    }
+
+    document.getElementById("paymentBox").style.display="block";
+
+}
+
+function paymentDone(){
+
+    document.getElementById("paymentStatus").innerHTML=
+    "✅ Payment Received (Please click Place Order)";
+
+}
+
+function placeOrder(){
+
+    const name=document.getElementById("customerName").value.trim();
+    const phone=document.getElementById("customerPhone").value.trim();
+    const address=document.getElementById("customerAddress").value.trim();
+
+    if(name=="" || phone==""){
+        alert("Please enter Name and Mobile Number");
+        return;
+    }
+
+    if(cart.length==0){
+        alert("Cart is empty");
+        return;
+    }
+
+    let message="🍽 *Dockyard Le Bistro*%0A";
+    message+="*New Order*%0A%0A";
+
+    message+="👤 Name : "+name+"%0A";
+    message+="📞 Phone : "+phone+"%0A";
+    message+="📍 Address : "+address+"%0A%0A";
+
+    let total=0;
+
+    cart.forEach(item=>{
+
+        total+=item.price*item.qty;
+
+        message+="• "+item.name+
+        " x "+item.qty+
+        " = ₹"+(item.price*item.qty)+"%0A";
+
+    });
+
+    message+="%0A💰 Total : ₹"+total;
+    message+="%0A%0A✅ Payment Done";
+
+    window.open(
+    "https://wa.me/917626845853?text="+message,
+    "_blank"
+    );
+
+}
