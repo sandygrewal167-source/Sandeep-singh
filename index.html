@@ -1,32 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Dockyard Le Bistro</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header class="hero">
-<h1>🚢 Dockyard Le Bistro</h1>
-<p>🌿 100% Pure Vegetarian Cafe</p>
-<p>📍 CGC, Jhajheri, Mohali</p>
-<a href="https://wa.me/917626845853?text=Hello%20Dockyard%20Le%20Bistro!%20I%20want%20to%20place%20an%20order.">Order on WhatsApp</a>
-<a href="tel:+919646225661">Call Now</a>
-</header>
-<main>
-<h2>Menu</h2>
-<p>Fries • Shakes • Pizza • Pasta • Momos • Kathi Roll • Wraps • Crispy Nation • Tikka • Desi Chinese • Main Course • Meal Box • Kulcha • Parantha • Street Food</p>
-<h3>Happy Offers</h3>
-<ul>
-<li>Buy 6 Veg Burgers & Get 1 FREE</li>
-<li>Buy 3 Pasta & Get 1 Spring Roll FREE</li>
-<li>Buy Any 3 Pizza & Get Fried Momos FREE</li>
-</ul>
-</main>
-<footer>
-<p>📞 9646225661 | 7626845853</p>
-<p>❤️ We Serve Happiness!</p>
-</footer>
-</body>
-</html>
+let cart = [];
+
+function addToCart(name, price) {
+  const item = cart.find(i => i.name === name);
+
+  if (item) {
+    item.qty++;
+  } else {
+    cart.push({
+      name: name,
+      price: price,
+      qty: 1
+    });
+  }
+
+  updateCart();
+}
+
+function updateCart() {
+
+  const cartItems = document.getElementById("cartItems");
+  const totalPrice = document.getElementById("totalPrice");
+
+  cartItems.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach(item => {
+
+    total += item.price * item.qty;
+
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <span>${item.name} x ${item.qty}</span>
+        <strong>₹${item.price * item.qty}</strong>
+      </div>
+    `;
+
+  });
+
+  totalPrice.innerHTML = "₹" + total;
+
+}
+
+function placeOrder() {
+
+  let name = document.getElementById("customerName").value;
+  let phone = document.getElementById("customerPhone").value;
+  let address = document.getElementById("customerAddress").value;
+
+  if(name=="" || phone==""){
+    alert("Please enter Name & Phone Number");
+    return;
+  }
+
+  let message = `*New Order - Dockyard Le Bistro*%0A%0A`;
+
+  message += `👤 Name : ${name}%0A`;
+  message += `📞 Phone : ${phone}%0A`;
+  message += `📍 Address : ${address}%0A%0A`;
+
+  message += `*Items*%0A`;
+
+  cart.forEach(item=>{
+
+      message += `${item.qty} x ${item.name} = ₹${item.qty*item.price}%0A`;
+
+  });
+
+  message += `%0AThank You ❤️`;
+
+  window.open("https://wa.me/917626845853?text="+message);
+
+}function increaseQty(name){
+
+  cart.forEach(item=>{
+
+    if(item.name===name){
+      item.qty++;
+    }
+
+  });
+
+  updateCart();
+
+}
+
+function decreaseQty(name){
+
+  cart.forEach((item,index)=>{
+
+    if(item.name===name){
+
+      item.qty--;
+
+      if(item.qty<=0){
+        cart.splice(index,1);
+      }
+
+    }
+
+  });
+
+  updateCart(cartItems.innerHTML += `
+<div class="cart-card">
+
+<h4>${item.name}</h4>
+
+<p>₹${item.price}</p>
+
+<div class="qty">
+
+<button onclick="decreaseQty('${item.name}')">-</button>
+
+<span>${item.qty}</span>
+
+<button onclick="increaseQty('${item.name}')">+</button>
+
+</div>
+
+<button class="remove"
+onclick="removeItem('${item.name}')">
+
+Remove
+
+</button>
+
+</div>
+`;);
+
+}
+
+function removeItem(name){
+
+  cart = cart.filter(item=>item.name!==name);
+
+  updateCart();
+
+}
